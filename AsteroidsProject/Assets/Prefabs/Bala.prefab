@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3368763889765004728}
   - component: {fileID: 672511819092493265}
   - component: {fileID: 1741013651185439481}
-  - component: {fileID: 3897596625007051852}
+  - component: {fileID: 1069844346689788453}
   m_Layer: 0
   m_Name: Bala
   m_TagString: Untagged
@@ -91,13 +91,13 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7379334600938918104}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3897596625007051852
+--- !u!114 &1069844346689788453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,4 +110,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  ttl: 5
+  ttl: 3

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Disparar : MonoBehaviour
 {
+    public Transform spawnbalas;
+    
+        
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +19,12 @@ public class Disparar : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Pool.Instance.Get();
+            
+            Pool.Instance.Get().transform.position = spawnbalas.position;
+            
         }
+        
     }
+
+    
 }

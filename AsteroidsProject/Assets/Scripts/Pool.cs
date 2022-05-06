@@ -7,6 +7,7 @@ public class Pool : MonoBehaviour
     public static Pool Instance { get; private set; }
     public GameObject prefab;
     public int initialamount = 50;
+   
 
     List<GameObject> pool = new List<GameObject>();
 

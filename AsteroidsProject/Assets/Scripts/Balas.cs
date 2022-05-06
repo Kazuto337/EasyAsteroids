@@ -6,7 +6,8 @@ public class Balas : MonoBehaviour
 {
 
     public float speed = 20f;
-    public float ttl = 5f;
+    public float ttl = 3f;
+    
 
     // Start is called before the first frame update
     void OnEnable()
@@ -23,6 +24,6 @@ public class Balas : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
     }
 }
