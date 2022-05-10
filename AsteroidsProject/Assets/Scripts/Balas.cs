@@ -12,6 +12,7 @@ public class Balas : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
+        GetComponent<MeshRenderer>().enabled = true;
         StartCoroutine(ReturnToPoolCoroutine());
     }
 
