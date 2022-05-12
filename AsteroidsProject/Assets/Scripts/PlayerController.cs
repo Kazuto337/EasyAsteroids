@@ -14,6 +14,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float borderX;
     [SerializeField] float borderY;
     [SerializeField] bool canMoveH, canMoveY;
+
+    [Header("GameManager")]
+    [SerializeField] GameController gameController;
+    [SerializeField] GameObject spawnPointObject;
+    [SerializeField] Vector3 spawnPoint;
+
+    private void Start()
+    {
+        spawnPoint = spawnPointObject.transform.position;
+    }
     void Update()
     {
         CheckBorders();
@@ -30,9 +40,15 @@ public class PlayerController : MonoBehaviour
         controller.Move(movementVector * speed * Time.deltaTime);
     }
 
+    public void ResetTransform()
+    {
+        print("ResetPlayer");
+        transform.position = spawnPoint;
+    }
+
     public void Blow()
     {
-        gameObject.SetActive(false);
+        gameController.GameOver();
     }
 
     public void CheckBorders()
@@ -73,6 +89,15 @@ public class PlayerController : MonoBehaviour
                 positionChange.y = 0;
             }
             else if (Input.GetAxis("Vertical") > 0) canMoveY = true;
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            print("le pegue al enemy");
+            Blow();
         }
     }
 }

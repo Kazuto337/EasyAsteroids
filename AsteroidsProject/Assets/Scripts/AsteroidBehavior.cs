@@ -6,7 +6,7 @@ public class AsteroidBehavior : MonoBehaviour
 {
     [Header("GAME START")]
     public bool isMoving;
-    [SerializeField] Transform initialTransform;
+    [SerializeField] Vector3 initialPosition;
 
     [Header("ROTATOR")]
     [SerializeField] Rigidbody rgbd;
@@ -25,8 +25,10 @@ public class AsteroidBehavior : MonoBehaviour
 
     void Start()
     {
-        initialTransform = GetComponent<Transform>();
         angularVelocity = new Vector3(Random.Range(0.5f, 1), Random.Range(0.5f, 1), Random.Range(0.5f, 1)).normalized;
+        initialPosition = transform.position;
+
+        print(initialPosition.ToString());
     }
 
     private void OnEnable()
@@ -54,15 +56,15 @@ public class AsteroidBehavior : MonoBehaviour
 
     public void ResetPosition()
     {
-        transform.position = initialTransform.position;
-        angularVelocity = new Vector3(Random.Range(0.5f, 1), Random.Range(0.5f, 1), Random.Range(0.5f, 1)).normalized;
+        transform.position = initialPosition;
+        acceleration = target.transform.position - transform.position;
+        velocity = acceleration * Time.deltaTime;
     }
 
     public void CheckBorders()
     {
         if (transform.position.x >= borderX || transform.position.x <= -borderX || transform.position.y >= borderY || transform.position.y <= -borderY)
         {
-            isMoving = false;
             ResetPosition();
         }
     }

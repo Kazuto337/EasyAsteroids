@@ -37,7 +37,6 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit other)
     {
-        print("Colisiono el enemigo");
         if (other.gameObject.CompareTag("Attack"))
         {
             health--;
@@ -45,7 +44,6 @@ public class EnemyBehavior : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            print("Colisiono con el player");
             health = 0;
         }
     }
