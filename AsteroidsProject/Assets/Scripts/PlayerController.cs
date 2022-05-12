@@ -25,9 +25,14 @@ public class PlayerController : MonoBehaviour
         if (canMoveH) positionChange.x = Input.GetAxis("Horizontal");
         if (canMoveY) positionChange.y = Input.GetAxis("Vertical");
 
-        movementVector = new Vector3(positionChange.x , positionChange.y , 0f);
+        movementVector = new Vector3(positionChange.x, positionChange.y, 0f);
 
         controller.Move(movementVector * speed * Time.deltaTime);
+    }
+
+    public void Blow()
+    {
+        gameObject.SetActive(false);
     }
 
     public void CheckBorders()

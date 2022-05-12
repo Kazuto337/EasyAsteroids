@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [Header("Ateroid Spawner")]
-    [SerializeField] GameObject hazard;
-    [SerializeField] Vector3 spawnValues;
+    [Header("GAME STATES")]
+    [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject onGame;
 
-    public void HazardSpawn()
+    [Header("ASTEROIDS POOL")]
+    [SerializeField] List<AsteroidBehavior> asteroidsPool;
+    public void GameOver()
     {
-        Vector3 spawnPos = new Vector3(Random.Range(-spawnValues.x , spawnValues.x), Random.Range(5.5f , 5) , 0);
-        Instantiate(hazard , spawnPos , Quaternion.identity);
+        onGame.SetActive(false);
+        gameOverScreen.SetActive(true);
+
+        foreach (AsteroidBehavior item in asteroidsPool)
+        {
+            item.isMoving = false;
+            item.gameObject.SetActive(true);
+        }
+    }
+
+    public void StartGame()
+    {
+        onGame.SetActive(true);
+        gameOverScreen.SetActive(false);
+
+        foreach (AsteroidBehavior item in asteroidsPool)
+        {
+            item.isMoving = true;
+            item.gameObject.SetActive(false);
+        }
     }
 }

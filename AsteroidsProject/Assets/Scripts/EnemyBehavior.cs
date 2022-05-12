@@ -21,8 +21,13 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(player.transform , Vector3.forward * -1);
+        transform.LookAt(player.transform, Vector3.forward * -1);
         Move();
+
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void Move()
@@ -30,12 +35,18 @@ public class EnemyBehavior : MonoBehaviour
         characterController.Move(new Vector3(0, -1, 0) * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnControllerColliderHit(ControllerColliderHit other)
     {
+        print("Colisiono el enemigo");
         if (other.gameObject.CompareTag("Attack"))
         {
             health--;
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            print("Colisiono con el player");
+            health = 0;
         }
     }
 }
