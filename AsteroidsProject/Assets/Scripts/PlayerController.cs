@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float borderY;
     [SerializeField] bool canMoveH, canMoveY;
 
-    [Header("GameManager")]
+    [Header("ReSpawn")]
     [SerializeField] GameController gameController;
     [SerializeField] GameObject spawnPointObject;
     [SerializeField] Vector3 spawnPoint;
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     public void Blow()
     {
+        ResetTransform();
         gameController.GameOver();
     }
 

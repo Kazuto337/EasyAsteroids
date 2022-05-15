@@ -44,6 +44,8 @@ public class EnemyBehavior : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
+            print("Nave Enemiga al Player");
+            other.gameObject.GetComponent<PlayerController>().Blow();
             health = 0;
         }
     }
