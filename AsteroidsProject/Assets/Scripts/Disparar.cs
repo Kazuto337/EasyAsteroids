@@ -5,16 +5,42 @@ using UnityEngine;
 public class Disparar : MonoBehaviour
 {
     public Transform spawnbalas;
-    void Update()
+    public bool sedispara;
+
+    private void Start()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
+        sedispara = true;
+    }
 
-            Pool.Instance.Get().transform.position = spawnbalas.position;
-
-        }
+    
+    void FixedUpdate()
+    {
+        disparar();
 
     }
 
+    public void disparar()
+    {
+        if (sedispara== true &&Input.GetKey(KeyCode.Space) )
+        {
+            StartCoroutine(cadencia());
+            
+                
+            Pool.Instance.Get().transform.position = spawnbalas.position;
+                
+
+
+        }
+        
+    }
+
+    IEnumerator cadencia()
+    {
+        sedispara = false;        
+        yield return new WaitForSeconds(0.5f);
+        sedispara = true;
+
+
+    }
 
 }
