@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         movementVector = new Vector3(positionChange.x, positionChange.y, 0f);
 
         controller.Move(movementVector * speed * Time.deltaTime);
+
     }
 
     public void ResetTransform()
@@ -97,7 +98,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            print("le pegue al enemy");
             Blow();
         }
     }
