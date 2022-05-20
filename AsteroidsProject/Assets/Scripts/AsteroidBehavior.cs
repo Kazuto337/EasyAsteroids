@@ -18,7 +18,7 @@ public class AsteroidBehavior : MonoBehaviour
     Vector3 velocity, acceleration;
     [SerializeField] float speedFactor;
 
-    [Header("CHECKBORDERS")]
+    [Header("CheckBorders")]
     [SerializeField] float borderX;
     [SerializeField] float borderY;
 
@@ -28,6 +28,7 @@ public class AsteroidBehavior : MonoBehaviour
         angularVelocity = new Vector3(Random.Range(0.5f, 1), Random.Range(0.5f, 1), Random.Range(0.5f, 1)).normalized;
         initialPosition = transform.position;
 
+        print(initialPosition.ToString());
     }
 
     private void OnEnable()

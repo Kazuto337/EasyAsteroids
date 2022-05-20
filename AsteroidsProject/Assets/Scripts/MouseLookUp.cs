@@ -10,6 +10,7 @@ public class MouseLookUp : MonoBehaviour
 
     private void Start()
     {
+        print(transform.localRotation.eulerAngles);
         indexTransform = GetComponent<Transform>();
     }
     private void Update()
