@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4149185944084367013}
   - component: {fileID: 1025419075116747008}
   - component: {fileID: 3017396901230067146}
-  - component: {fileID: 4476129287365923794}
   - component: {fileID: 4476129287365923798}
   m_Layer: 0
   m_Name: Player
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4476129287365923794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5401610713870182341, guid: 8344006f192346f4ebc7915e429745f5, type: 3}
-  m_PrefabInstance: {fileID: 8423991402098471959}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3665664077587356703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450f14d21407c6f4d8ff1ac5866ded22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnbalas: {fileID: 4476129288931936344}
 --- !u!114 &4476129287365923798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +107,7 @@ GameObject:
   - component: {fileID: 4476129287260127918}
   - component: {fileID: 4476129287260127913}
   - component: {fileID: 4476129287260127912}
+  - component: {fileID: 126915311454855557}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -165,8 +152,6 @@ MonoBehaviour:
   gameController: {fileID: 0}
   spawnPointObject: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 0}
-  background: {fileID: 0}
-  shaderSpeed: 0.25
 --- !u!143 &4476129287260127912
 CharacterController:
   m_ObjectHideFlags: 0
@@ -185,6 +170,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &126915311454855557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4476129287260127915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62817b6d1cad52e48826afb5e1438264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpawn: {fileID: 4476129288931936347}
 --- !u!1 &4476129288931936347
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,5 +268,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 8344006f192346f4ebc7915e429745f5, type: 3}

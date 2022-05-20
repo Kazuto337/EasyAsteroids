@@ -44,7 +44,7 @@ public class AsteroidBehavior : MonoBehaviour
         if (isMoving)
         {
             AsteroidRotator();
-            transform.position += velocity * speedFactor * Time.deltaTime; //Movement
+            transform.position += velocity.normalized * speedFactor * Time.deltaTime; //Movement
         }
         CheckBorders();
     }

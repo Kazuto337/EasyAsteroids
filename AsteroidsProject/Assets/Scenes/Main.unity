@@ -160,7 +160,7 @@ MonoBehaviour:
   angularVelocity: {x: 0, y: 0, z: 0}
   rotationSpeed: 2
   target: {fileID: 1308029161}
-  speedFactor: 20
+  speedFactor: 5
   borderX: 6
   borderY: 8.5
 --- !u!64 &65730118
