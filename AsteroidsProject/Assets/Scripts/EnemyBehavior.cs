@@ -4,29 +4,44 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    [SerializeField] GameController gameManager;
+
     [Header("STATS")]
     [SerializeField] float health;
 
     [Header("LOOK AT PLAYER")]
     [SerializeField] GameObject player;
 
-    [Header("Movement")]
+    [Header("MOVEMENT")]
     [SerializeField] float speed;
     [SerializeField] CharacterController characterController;
+    [SerializeField] bool canMove;
 
-    void Start()
+    [Header("VFX")]
+    [SerializeField] ParticleSystem receiveDamage;
+    [SerializeField] AudioSource receiveDamageSFX;
+    [SerializeField] ParticleSystem explotion;
+    [SerializeField] AudioSource explotionSFX;
+
+    private void OnEnable()
     {
-
+        GetComponent<MeshRenderer>().enabled = true;
+        canMove = true;
     }
 
     void Update()
     {
-        transform.LookAt(player.transform, Vector3.forward * -1);
-        Move();
+        if (canMove)
+        {
+            transform.LookAt(player.transform, Vector3.forward * -1);
+            Move();
+        }
 
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            GetComponent<MeshRenderer>().enabled = false;
+            characterController.enabled = false;
+            canMove = false;
         }
     }
 
@@ -37,16 +52,35 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit other)
     {
-        if (other.gameObject.CompareTag("Attack"))
-        {
-            health--;
-            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        }
         if (other.gameObject.CompareTag("Player"))
         {
-            print("Nave Enemiga al Player");
-            other.gameObject.GetComponent<PlayerController>().Blow();
             health = 0;
+            gameManager.GameOver();
+
+            if (health <= 0)
+            {
+                explotionSFX.Play();
+                explotion.Play();
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Attack"))
+        {
+            health -= other.GetComponent<Bullet>().damage;
+
+            receiveDamageSFX.Play();
+            receiveDamage.Play();
+
+            Bulletspool.Instance.Return2Pool(other.gameObject);
+
+            if (health <= 0)
+            {
+                explotionSFX.Play();
+                explotion.Play();
+            }
         }
     }
 }

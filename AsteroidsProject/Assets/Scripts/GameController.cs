@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 
     [Header("ASTEROIDS POOL")]
     [SerializeField] List<AsteroidBehavior> asteroidsPool;
+
     public void GameOver()
     {
         print("GameOver");
@@ -25,17 +26,16 @@ public class GameController : MonoBehaviour
     }
 
     public void StartGame()
-    {        
-        onGame.SetActive(true);
-        player.gameObject.SetActive(true);
-        player.ResetTransform();
+    {
+        player.ResetPlayer();
+        onGame.SetActive(true);        
         gameOverScreen.SetActive(false);
 
         foreach (AsteroidBehavior item in asteroidsPool)
         {
             item.gameObject.SetActive(true);
             item.ResetPosition();
-            item.isMoving = true;                       
+            item.isMoving = true;
         }
     }
 }

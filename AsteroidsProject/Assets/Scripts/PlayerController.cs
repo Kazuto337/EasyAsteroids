@@ -4,25 +4,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] GameController gameController;
+    [SerializeField] ShootingSystem shootingSystem;
+
+    #region Movement Variables
     [Header("Movement")]
     [SerializeField] float speed;
     [SerializeField] CharacterController controller;
     [SerializeField] Vector2 positionChange;
     Vector3 movementVector;
+    #endregion
 
+    #region Borders Variables
     [Header("CheckBorders")]
     [SerializeField] float borderX;
     [SerializeField] float borderY;
     [SerializeField] bool canMoveH, canMoveY;
+    #endregion
 
+    #region ReSpawn Variables
     [Header("ReSpawn")]
-    [SerializeField] GameController gameController;
     [SerializeField] GameObject spawnPointObject;
     [SerializeField] Vector3 spawnPoint;
+    #endregion
+
+    #region VFX
+    [Header("Vfx")]
+    [SerializeField] ParticleSystem blowVFX;
+    [SerializeField] AudioSource blowSFX;
+    [SerializeField] GameObject playerObj;
+    #endregion
 
     private void Start()
     {
         spawnPoint = spawnPointObject.transform.position;
+        controller.enabled = true;
     }
     void Update()
     {
@@ -40,19 +56,34 @@ public class PlayerController : MonoBehaviour
         controller.Move(movementVector * speed * Time.deltaTime);
     }
 
-    public void ResetTransform()
+    public void ResetPlayer()
     {
-        print("ResetPlayer");
+        blowVFX.Clear();
+        blowSFX.Stop();
+
         transform.position = spawnPoint;
+
+        print("ResetPlayer");
+
+        playerObj.SetActive(true);
+        controller.enabled = true;
+        shootingSystem.enabled = true;
     }
 
-    public void Blow()
+    private void Blow()
     {
-        ResetTransform();
+        shootingSystem.enabled = false;
+        playerObj.SetActive(false);
+
+        blowSFX.Play();
+        blowVFX.Play();
+
+        controller.enabled = false;
+
         gameController.GameOver();
     }
 
-    public void CheckBorders()
+    private void CheckBorders()
     {
         if (transform.position.x >= borderX)
         {
@@ -97,8 +128,17 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            print("le pegue al enemy");
             Blow();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Asteroid"))
+        {
+            Blow();
+            gameController.GameOver();
+            print("le pegue al asteroide");
         }
     }
 }

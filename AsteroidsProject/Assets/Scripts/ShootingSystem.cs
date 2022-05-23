@@ -5,6 +5,8 @@ using UnityEngine;
 public class ShootingSystem : MonoBehaviour
 {
     [SerializeField] GameObject bulletSpawn;
+    [SerializeField] ParticleSystem anticipation;
+    [SerializeField] AudioSource laserSFX;
     void Update()
     {
         Vector3 mousePos = GetWorldMousePos();
@@ -16,6 +18,8 @@ public class ShootingSystem : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             playerShoot();
+            anticipation.Play();
+            laserSFX.Play();
         }
     }
 
