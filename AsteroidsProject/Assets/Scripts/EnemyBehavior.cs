@@ -8,21 +8,37 @@ public class EnemyBehavior : MonoBehaviour
 
     [Header("STATS")]
     [SerializeField] float health;
+    [SerializeField] float respawnTime;
 
     [Header("LOOK AT PLAYER")]
     [SerializeField] GameObject player;
 
+    #region MOVEMENT VARIABLES
     [Header("MOVEMENT")]
     [SerializeField] float speed;
     [SerializeField] CharacterController characterController;
     [SerializeField] bool canMove;
+    #endregion
 
+    #region VFX & SFX
     [Header("VFX")]
     [SerializeField] ParticleSystem receiveDamage;
     [SerializeField] AudioSource receiveDamageSFX;
     [SerializeField] ParticleSystem explotion;
     [SerializeField] AudioSource explotionSFX;
+    [SerializeField] Animator anima;
+    #endregion
 
+    #region CHECKBORDERS
+    [Header("CheckBorders")]
+    [SerializeField] Vector3 initialPosition;
+    [SerializeField] float borderY, deActivateFurtive, activateFurtive;
+    #endregion
+
+    private void Start()
+    {
+        initialPosition = transform.position;
+    }
     private void OnEnable()
     {
         GetComponent<MeshRenderer>().enabled = true;
@@ -31,23 +47,32 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        if (canMove)
-        {
-            transform.LookAt(player.transform, Vector3.forward * -1);
-            Move();
-        }
+        CheckBorders();
+
+        transform.LookAt(player.transform, Vector3.forward * -1);
+        Move();
 
         if (health <= 0)
         {
-            GetComponent<MeshRenderer>().enabled = false;
-            characterController.enabled = false;
-            canMove = false;
+            Blow();
+            respawnTime -= 1 * Time.deltaTime;
+            if (respawnTime <= 0)
+            {
+                ResetEnemy();
+                respawnTime = 5;
+            }
         }
     }
 
     public void Move()
     {
         characterController.Move(new Vector3(0, -1, 0) * speed * Time.deltaTime);
+    }
+
+    private void Blow()
+    {
+        characterController.enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit other)
@@ -82,5 +107,32 @@ public class EnemyBehavior : MonoBehaviour
                 explotion.Play();
             }
         }
+    }
+
+    private void CheckBorders()
+    {
+        if (transform.position.y <= deActivateFurtive && transform.position.y > activateFurtive)
+        {
+            anima.SetBool("ActivateFutive", false);
+        }
+        else if (transform.position.y <= activateFurtive)
+        {
+            anima.SetBool("ActivateFutive", true);
+        }
+
+        if (transform.position.y <= -borderY)
+        {
+            gameObject.SetActive(false);
+            ResetEnemy();
+        }
+    }
+
+    public void ResetEnemy()
+    {
+        health = 50;
+        transform.position = initialPosition;
+        gameObject.SetActive(true);
+        GetComponent<MeshRenderer>().enabled = true;
+        characterController.enabled = true;
     }
 }

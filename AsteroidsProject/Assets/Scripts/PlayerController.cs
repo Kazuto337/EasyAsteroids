@@ -68,6 +68,9 @@ public class PlayerController : MonoBehaviour
         playerObj.SetActive(true);
         controller.enabled = true;
         shootingSystem.enabled = true;
+
+        canMoveH = true;
+        canMoveY = true;
     }
 
     private void Blow()

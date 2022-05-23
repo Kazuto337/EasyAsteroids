@@ -98,7 +98,6 @@ public class AsteroidBehavior : MonoBehaviour
         if (other.CompareTag("Attack"))
         {
             Bulletspool.Instance.Return2Pool(other.gameObject);
-            print("auch");
             isMoving = false;
             Blow();
         }

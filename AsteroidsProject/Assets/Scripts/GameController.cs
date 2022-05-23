@@ -12,6 +12,9 @@ public class GameController : MonoBehaviour
     [Header("ASTEROIDS POOL")]
     [SerializeField] List<AsteroidBehavior> asteroidsPool;
 
+    [Header("ENEMIES POOL")]
+    [SerializeField] List<EnemyBehavior> enemiesPool;
+
     public void GameOver()
     {
         print("GameOver");
@@ -23,12 +26,17 @@ public class GameController : MonoBehaviour
             item.isMoving = false;
             item.gameObject.SetActive(true);
         }
+
+        foreach (GameObject item in Bulletspool.Instance.BulletList)
+        {
+            Bulletspool.Instance.Return2Pool(item);
+        }
     }
 
     public void StartGame()
     {
         player.ResetPlayer();
-        onGame.SetActive(true);        
+        onGame.SetActive(true);
         gameOverScreen.SetActive(false);
 
         foreach (AsteroidBehavior item in asteroidsPool)
@@ -36,6 +44,10 @@ public class GameController : MonoBehaviour
             item.gameObject.SetActive(true);
             item.ResetPosition();
             item.isMoving = true;
+        }
+        foreach (EnemyBehavior item in enemiesPool)
+        {
+            item.ResetEnemy();
         }
     }
 }

@@ -9,6 +9,8 @@ public class Bulletspool : MonoBehaviour
     private static Bulletspool instance;
     public static Bulletspool Instance { get { return instance; } }
 
+    public List<GameObject> BulletList { get => bulletList; set => bulletList = value; }
+
     private void Awake()
     {
         if (instance == null)

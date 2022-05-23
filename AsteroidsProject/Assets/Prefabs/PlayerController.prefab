@@ -5013,7 +5013,7 @@ MonoBehaviour:
   speed: 5
   controller: {fileID: 4476129287260127912}
   positionChange: {x: 0, y: 0}
-  borderX: 2
+  borderX: 2.15
   borderY: 4.7
   canMoveH: 1
   canMoveY: 1
