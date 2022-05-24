@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - noise_: 4.63
-    - offset_: 0.13
+    - offset_: 0.06
     - solydAmount_: 1.1
     m_Colors:
     - disolveColor_: {r: 0.9250993, g: 0.21132067, b: 1, a: 0}
