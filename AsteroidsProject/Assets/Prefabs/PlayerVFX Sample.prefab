@@ -4873,7 +4873,6 @@ GameObject:
   - component: {fileID: 4149185944084367013}
   - component: {fileID: 1025419075116747008}
   - component: {fileID: 3017396901230067146}
-  - component: {fileID: 4476129287365923798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4947,19 +4946,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4476129287365923798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5401610713870182337, guid: 8344006f192346f4ebc7915e429745f5, type: 3}
-  m_PrefabInstance: {fileID: 8423991402098471959}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3665664077587356703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65ae3498a84011348a9b7735aa499cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mousePos: {x: 0, y: 0, z: 0}
 --- !u!1 &4476129287260127915
 GameObject:
   m_ObjectHideFlags: 0
@@ -4969,13 +4955,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4476129287260127918}
-  - component: {fileID: 4476129287260127913}
-  - component: {fileID: 4476129287260127912}
-  - component: {fileID: 126915311454855557}
   - component: {fileID: 8498705891802299459}
   - component: {fileID: 5682110203722702553}
+  - component: {fileID: 3476831909010329020}
   m_Layer: 0
-  m_Name: PlayerController
+  m_Name: PlayerVFX Sample
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4997,68 +4981,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4476129287260127913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4476129287260127915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ef36f1ad8212664a891f2fde53caec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameController: {fileID: 0}
-  shootingSystem: {fileID: 126915311454855557}
-  speed: 5
-  controller: {fileID: 4476129287260127912}
-  positionChange: {x: 0, y: 0}
-  borderX: 2.15
-  borderY: 4.7
-  canMoveH: 1
-  canMoveY: 1
-  spawnPointObject: {fileID: 0}
-  spawnPoint: {x: 0, y: 0, z: 0}
-  blowVFX: {fileID: 24926931235189102}
-  blowSFX: {fileID: 5682110203722702553}
-  playerObj: {fileID: 3665664077587356703}
---- !u!143 &4476129287260127912
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4476129287260127915}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 0
-  m_Radius: 5.4
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &126915311454855557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4476129287260127915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62817b6d1cad52e48826afb5e1438264, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpawn: {fileID: 4476129288931936347}
-  anticipation: {fileID: 5609398052010258794}
-  laserSFX: {fileID: 8498705891802299459}
-  cooldown: 0
-  coolTime: 0
-  isCool: 0
 --- !u!82 &8498705891802299459
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5251,6 +5173,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3476831909010329020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4476129287260127915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee97e39a5dc1144980f2f1d39e29a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpawn: {fileID: 4476129288931936347}
+  bulletTarget: {fileID: 0}
+  anticipation: {fileID: 5609398052010258794}
+  laserSFX: {fileID: 8498705891802299459}
+  cooldown: 0
+  coolTime: 1.5
+  isCool: 1
+  coolBar: {fileID: 0}
 --- !u!1 &4476129288931936347
 GameObject:
   m_ObjectHideFlags: 0

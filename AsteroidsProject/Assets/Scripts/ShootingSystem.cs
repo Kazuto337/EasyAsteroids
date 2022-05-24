@@ -7,6 +7,9 @@ public class ShootingSystem : MonoBehaviour
     [SerializeField] GameObject bulletSpawn;
     [SerializeField] ParticleSystem anticipation;
     [SerializeField] AudioSource laserSFX;
+    public float cooldown , coolTime;
+    public bool isCool;
+
     void Update()
     {
         Vector3 mousePos = GetWorldMousePos();
@@ -15,11 +18,29 @@ public class ShootingSystem : MonoBehaviour
         mousePos.z = playerPos.z;
 
         Debug.DrawRay(playerPos, mousePos - playerPos, Color.red);
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && isCool)
         {
+            isCool = false;
             playerShoot();
+            StartCoroutine("CoolDown");
             anticipation.Play();
             laserSFX.Play();
+        }
+    }
+
+    IEnumerator CoolDown()
+    {
+        cooldown = 0;
+        while (cooldown < coolTime)
+        {
+            cooldown += Time.deltaTime;
+            
+            if (cooldown >= coolTime)
+            {
+                isCool = true;
+                StopCoroutine("CoolDown");
+            }
+            yield return null;
         }
     }
 
