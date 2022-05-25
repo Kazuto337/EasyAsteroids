@@ -528,10 +528,6 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 707394943}
-    - target: {fileID: 4491606179679800713, guid: 13d2e984a45966142b7cfa80abf0b523, type: 3}
-      propertyPath: activateFurtive
-      value: -4
-      objectReference: {fileID: 0}
     - target: {fileID: 4491606179679800715, guid: 13d2e984a45966142b7cfa80abf0b523, type: 3}
       propertyPath: m_Name
       value: EnemyShip (0)
