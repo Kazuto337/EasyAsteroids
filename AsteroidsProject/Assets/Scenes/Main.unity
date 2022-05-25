@@ -640,6 +640,7 @@ MonoBehaviour:
   - {fileID: 1296710397}
   - {fileID: 923725727}
   - {fileID: 579884853}
+  background: {fileID: 2115285989}
 --- !u!4 &707394944
 Transform:
   m_ObjectHideFlags: 0

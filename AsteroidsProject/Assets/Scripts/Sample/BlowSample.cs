@@ -36,7 +36,7 @@ public class BlowSample : MonoBehaviour
     }
     public void Blow()
     {
-        if (!blowVFX.isPlaying)
+        if (!blowVFX.isPlaying && isCool)
         {
             mainObj.SetActive(false);
             blowSFX.Play();

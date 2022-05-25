@@ -15,6 +15,14 @@ public class GameController : MonoBehaviour
     [Header("ENEMIES POOL")]
     [SerializeField] List<EnemyBehavior> enemiesPool;
 
+    [Header("BACKGROUND SPEED")]
+    [SerializeField] GameObject background;
+
+    private void Awake()
+    {
+        background.GetComponent<Renderer>().material.SetVector("Speed_", new Vector4(0, 0.33f, 0, 0));
+    }
+
     public void GameOver()
     {
         print("GameOver");

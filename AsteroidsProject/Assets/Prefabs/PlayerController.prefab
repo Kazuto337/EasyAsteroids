@@ -5056,7 +5056,6 @@ MonoBehaviour:
   bulletSpawn: {fileID: 4476129288931936347}
   anticipation: {fileID: 5609398052010258794}
   laserSFX: {fileID: 8498705891802299459}
-  cooldown: 0
   coolTime: 0.25
   isCool: 1
 --- !u!82 &8498705891802299459

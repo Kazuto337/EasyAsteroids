@@ -26,6 +26,8 @@ public class AsteroidBehavior : MonoBehaviour
     [SerializeField] float health = 3;
     [SerializeField] ParticleSystem explotion;
     [SerializeField] AudioSource explotionSFX;
+    [SerializeField] Vector3 playerDistance;
+    [SerializeField] float intensity;
 
 
     void Start()
@@ -59,6 +61,24 @@ public class AsteroidBehavior : MonoBehaviour
             }
         }
         CheckBorders();
+        playerDistance = target.transform.position - gameObject.transform.position;
+        Debug.DrawRay(gameObject.transform.position, playerDistance, Color.white);
+        print(playerDistance.magnitude);
+        GetComponent<Renderer>().material.SetFloat("intensity_", intensity);
+        if (playerDistance.magnitude <= 3)
+        {
+            if (intensity <= 8)
+            {
+                intensity ++ ;
+            }
+        }
+        else if (playerDistance.magnitude > 3)
+        {
+            if (intensity >= 8)
+            {
+                intensity --;
+            }
+        }
     }
 
     public void AsteroidRotator()
@@ -75,6 +95,8 @@ public class AsteroidBehavior : MonoBehaviour
         transform.position = initialPosition;
         acceleration = target.transform.position - transform.position;
         velocity = acceleration * Time.deltaTime;
+
+        intensity = 2;
     }
 
     public void CheckBorders()

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 638099964866497563}
   - component: {fileID: 8886226690960308457}
   m_Layer: 0
-  m_Name: Asteroid
+  m_Name: AsteroidSample
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,8 +91,6 @@ MonoBehaviour:
   health: 3
   explotion: {fileID: 3057972012807995840}
   explotionSFX: {fileID: 8886226690960308457}
-  playerDistance: {x: 0, y: 0, z: 0}
-  intensity: 2
 --- !u!33 &638099964866497560
 MeshFilter:
   m_ObjectHideFlags: 0
