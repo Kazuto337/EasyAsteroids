@@ -7,7 +7,8 @@ public class ShootingSystem : MonoBehaviour
     [SerializeField] GameObject bulletSpawn;
     [SerializeField] ParticleSystem anticipation;
     [SerializeField] AudioSource laserSFX;
-    public float cooldown , coolTime;
+    private float cooldown;
+    [SerializeField] float coolTime;
     public bool isCool;
 
     void Update()
@@ -21,10 +22,10 @@ public class ShootingSystem : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && isCool)
         {
             isCool = false;
-            playerShoot();
-            StartCoroutine("CoolDown");
+            playerShoot();           
             anticipation.Play();
             laserSFX.Play();
+            StartCoroutine("CoolDown");
         }
     }
 

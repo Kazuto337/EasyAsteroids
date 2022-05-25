@@ -129,6 +129,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void ResetEnemy()
     {
+        print("ResetEnemy");
         health = 50;
         transform.position = initialPosition;
         gameObject.SetActive(true);

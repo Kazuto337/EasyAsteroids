@@ -31,6 +31,10 @@ public class GameController : MonoBehaviour
         {
             Bulletspool.Instance.Return2Pool(item);
         }
+        foreach (EnemyBehavior item in enemiesPool)
+        {
+            item.ResetEnemy();
+        }
     }
 
     public void StartGame()
@@ -44,10 +48,6 @@ public class GameController : MonoBehaviour
             item.gameObject.SetActive(true);
             item.ResetPosition();
             item.isMoving = true;
-        }
-        foreach (EnemyBehavior item in enemiesPool)
-        {
-            item.ResetEnemy();
-        }
+        }        
     }
 }
