@@ -14723,7 +14723,7 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0, z: 0}
   borderY: 6
   deActivateFurtive: 5.5
-  activateFurtive: -3.7
+  activateFurtive: -4
 --- !u!82 &4491606179679800712
 AudioSource:
   m_ObjectHideFlags: 0
